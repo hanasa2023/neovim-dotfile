@@ -11,8 +11,47 @@
 - Neovim 0.9.0+
 
 ## 📦 Installation
+### Linux / MacOs(Unix)
 ```
-git clone https://github.com/hanasa2023/neovim-dotfile.git ~/.config/nvim
+git clone https://github.com/hanasa2023/neovim-dotfile ~/.config/nvim
+```
+### Windows
+- If you're using Command Prompt(CMD)
+```
+git clone https://github.com/hanasa2023/neovim-dotfile %USERPROFILE%\AppData\Local\nvim --depth 1 && nvim
+```
+- If you're using PowerShell(pwsh)
+```
+git clone https://github.com/hanasa2023/neovim-dotfile $ENV:USERPROFILE\AppData\Local\nvim --depth 1 && nvim
+```
+**If the above path doesnt work, try any of these paths :**
+- For CMD : %LOCALAPPDATA%\nvim-lua
+```
+C:\Users\%USERNAME%\AppData\Local\nvim
+```
+- For PowerShell : $ENV:LocalAppData\nvim
+```
+C:\Users\$ENV:USERNAME\AppData\Local\nvim
+```
+
+## 🚚 Uninstall
+### Linux / Macos (unix)
+```
+rm -rf ~/.config/nvim
+rm -rf ~/.local/share/nvim
+```
+
+### Windows CMD
+```
+rd -r ~\AppData\Local\nvim
+rd -r ~\AppData\Local\nvim-data
+```
+
+### Window PowerShell
+```
+rm -Force ~\AppData\Local\nvim
+rm -Force ~\AppData\Local\nvim-data
+
 ```
 
 ## 🚀 Plugins
