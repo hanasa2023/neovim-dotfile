@@ -23,7 +23,8 @@ M.general = {
     ["<leader>vs"] = { ":VenvSelect<CR>", "Open VenvSelector" },
     ["<leader>vc"] = {
       ":VenvSelectCached<CR>",
-      "Retrieve the venv from a cache"},
+      "Retrieve the venv from a cache",
+    },
 
     -- Copilot
     ["<leader>go"] = { ":Copilot<CR>", "Open Copilot" },
@@ -53,6 +54,36 @@ M.general = {
       end,
       "Filter Notifications",
     },
+
+
+    -- TODO: Add a keybind for the todo-comments
+    -- FIX: Fix some of the keybinds
+    --
+    -- TODO-Comment
+    ["<leader>t"] = { ":TodoLocList<CR>", "List TODOs" },
+    ["<leader>tt"] = { ":TodoTelescope<CR>", "Search TODOs" },
+    ["]t"] = {
+      function()
+        require("todo-comments").jump_next()
+      end,
+      "Next TODO",
+    },
+    ["[t"] = {
+      function()
+        require("todo-comments").jump_prev()
+      end,
+      "Previous TODO",
+    },
+
+    -- MarkdownPreview
+    ["<leader>md"] = { ":MarkdownPreview<CR>", "Open Markdown Preview" },
+
+    -- Trouble
+    ["<leader>px"] = { ":Trouble<CR>", "Open Trouble" },
+    ["<leader>pw"] = { ":Trouble workspace_diagnostics<CR>", "Workspace Diagnostics" },
+    ["<leader>pd"] = { ":Trouble document_diagnostics<CR>", "Document Diagnostics" },
+    ["<leader>pl"] = { ":Trouble loclist<CR>", "Loclist" },
+    ["<leader>pq"] = { ":Trouble quickfix<CR>", "Quickfix" },
   },
 
   v = {

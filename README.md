@@ -1,0 +1,65 @@
+# 📝 Hanasa's personal neovim dotfiles
+#### This is a customized neovim based by [NvChad](https://nvchad.com)
+![Dashboard](https://files.catbox.moe/zkhwng.png)
+
+## 📸 ScreenShot
+![UI](https://files.catbox.moe/j8xao2.png)
+- All The keybindings are in the `lua/mappings.lua` file.And you can find all keybindings in the `CheatSheet`
+![CheatSheet](https://files.catbox.moe/f3v96w.png)
+
+## ⚡️ Requirements
+- Neovim 0.9.0+
+
+## 📦 Installation
+```
+git clone https://github.com/hanasa2023/neovim-dotfile.git ~/.config/nvim
+```
+
+## 🚀 Plugins
+### 📌 NvChad default plugins
+<hr>
+
+- [nvim-lua/plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
+- [NvChad/base46](https://github.com/NvChad/base46)
+- [NvChad/ui](https://github.com/NvChad/ui)
+- [NvChad/nvterm](https://github.com/NvChad/nvterm)
+- [NvChad/nvim-colorizer.lua](https://github.com/NvChad/nvim-colorizer.lua)
+- [nvim-tree/nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
+- [lukas-reineke/indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim)
+- [nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
+- [lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
+- [williamboman/mason.nvim](https://github.com/williamboman/mason.nvim)
+- [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
+- [windwp/nvim-autopairs](https://github.com/windwp/nvim-autopairs)
+- cmp sources plugins
+  > [saadparwaiz1/cmp_luasnip](https://github.com/saadparwaiz1/cmp_luasnip)<br>
+  > [hrsh7th/cmp-nvim-lua](https://github.com/hrsh7th/cmp-nvim-lua)<br>
+  > [hrsh7th/cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)<br>
+  > [hrsh7th/cmp-buffer](https://github.com/hrsh7th/cmp-buffer)<br>
+  > [hrsh7th/cmp-path](https://github.com/hrsh7th/cmp-path)<br>
+- [numToStr/Comment.nvim](https://github.com/numToStr/Comment.nvim)
+- [nvim-tree/nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua)
+- [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
+- [folke/which-key.nvim](https://github.com/folke/which-key.nvim)
+- [max397574/better-escape.nvim](https://github.com/max397574/better-escape.nvim)
+- [stevearc/conform.nvim](https://github.com/stevearc/conform.nvim)
+
+### ➕ Customized plugins
+<hr>
+    
+- [rcarriga/nvim-notify](https://github.com/rcarriga/nvim-notify)
+- [Bekaboo/dropbar.nvim](https://github.com/Bekaboo/dropbar.nvim)
+- [gelguy/wilder.nvim](https://github.com/gelguy/wilder.nvim)
+- [linux-cultist/venv-selector.nvim](https://github.com/linux-cultist/venv-selector.nvim)
+- [Eandrju/cellular-automaton.nvim](https://github.com/Eandrju/cellular-automaton.nvim)
+- [github/copilot.vim](https://github.com/github/copilot.vim)
+- [kdheepak/lazygit.nvim](https://github.com/kdheepak/lazygit.nvim)
+- [theniceboy/joshuto.nvim](https://github.com/theniceboy/joshuto.nvim)
+- [petertriho/nvim-scrollbar](https://github.com/petertriho/nvim-scrollbar)
+- [kylechui/nvim-surround](https://github.com/kylechui/nvim-surround)
+- [iamcco/markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)
+- [shellRaining/hlchunk.nvim](https://github.com/shellRaining/hlchunk.nvim)
+- [folke/todo-comments.nvim](https://github.com/folke/todo-comments.nvim)
+- [folke/trouble.nvim](https://github.com/folke/trouble.nvim)
+- [windwp/nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag)
+- [xiyaowong/transparent.nvim](https://github.com/xiyaowong/transparent.nvim)
