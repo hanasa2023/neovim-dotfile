@@ -84,6 +84,9 @@ M.general = {
     ["<leader>pd"] = { ":Trouble document_diagnostics<CR>", "Document Diagnostics" },
     ["<leader>pl"] = { ":Trouble loclist<CR>", "Loclist" },
     ["<leader>pq"] = { ":Trouble quickfix<CR>", "Quickfix" },
+
+    -- HandleURL
+    ["<leader>u"] = { ":HandleURL<CR>", "Open url in browser" },
   },
 
   v = {
