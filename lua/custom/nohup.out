@@ -66,3 +66,8 @@ INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
 [315916:315949:0305/230209.036880:ERROR:object_proxy.cc(576)] Failed to call method: org.freedesktop.DBus.Properties.Get: object_path= /org/freedesktop/portal/desktop: org.freedesktop.DBus.Error.InvalidArgs: No such interface “org.freedesktop.portal.FileChooser”
 [315916:315949:0305/230209.036902:ERROR:select_file_dialog_linux_portal.cc(286)] Failed to read portal version property
 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+(google-chrome:322854): Gtk-WARNING **: 23:13:09.394: Theme parsing error: gtk.css:3213:16: Unit is missing.
+[322854:322880:0305/231309.432849:ERROR:object_proxy.cc(576)] Failed to call method: org.freedesktop.DBus.Properties.Get: object_path= /org/freedesktop/portal/desktop: org.freedesktop.DBus.Error.InvalidArgs: No such interface “org.freedesktop.portal.FileChooser”
+[322854:322880:0305/231309.432867:ERROR:select_file_dialog_linux_portal.cc(286)] Failed to read portal version property
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.

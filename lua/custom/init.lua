@@ -15,12 +15,13 @@ usercmd("HandleURL", function()
   local line = vim.api.nvim_get_current_line()
   local url = string.match(line, "[a-z]*://[^ >,;\"']*")
   if url ~= nil then
-    vim.api.nvim_command(':terminal vivaldi "' .. url .. '"')
+    -- vim.api.nvim_command(':terminal vivaldi "' .. url .. '"')
     -- vim.api.nvim_command(':terminal nohup google-chrome-stable "' .. url .. '"')
+    require("nvterm.terminal").send('vivaldi "' .. url .. '"', "horizontal")
   else
     vim.api.nvim_command 'echo "No URI found in line."'
   end
 end, { nargs = 0 })
 
 -- vim.api.nvim_set_keymap("n", "gf", [[ <Cmd>lua M.HandleURL()<CR> ]], {})- })
--- "https://www.google.com"
+-- "https://www.google.com
