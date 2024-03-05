@@ -1,41 +1,41 @@
-# 📝 Hanasa's personal neovim dotfiles
+# 📝 Hanasa 的个人neovim配置文件
 [![GitHub](https://img.shields.io/github/license/hanasa2023/neovim-dotfile?style=for-the-badge)](https://github.com/hanasa2023/neovim-dotfile?tab=MIT-1-ov-file)
-#### This is a customized neovim based by [NvChad](https://nvchad.com)
+#### 这是一个基于 [NvChad](https://nvchad.com) 的客制化neovim
 ![Dashboard](https://files.catbox.moe/zkhwng.png)
 
-## 📸 ScreenShot
+## 📸 屏幕快照
 ![UI](https://files.catbox.moe/j8xao2.png)
-- All of the keybindings are in the `lua/mappings.lua` file.And you can find all keybindings in the `CheatSheet`
+- 所有键位绑定都可以在 `lua/mappings.lua` 中找到。并且你可以在 `CheatSheet` 中找到所有的键位绑定。
 ![CheatSheet](https://files.catbox.moe/f3v96w.png)
 
-## ⚡️ Requirements
+## ⚡️ 安装需求
 - Neovim 0.9.0+
 
-## 📦 Installation
+## 📦 安装
 ### Linux / MacOs(Unix)
 ```
 git clone https://github.com/hanasa2023/neovim-dotfile ~/.config/nvim
 ```
 ### Windows
-- If you're using Command Prompt(CMD)
+- 如果你正在使用 Command Prompt(CMD)
 ```
 git clone https://github.com/hanasa2023/neovim-dotfile %USERPROFILE%\AppData\Local\nvim --depth 1 && nvim
 ```
-- If you're using PowerShell(pwsh)
+- 如果你正在使用 PowerShell(pwsh)
 ```
 git clone https://github.com/hanasa2023/neovim-dotfile $ENV:USERPROFILE\AppData\Local\nvim --depth 1 && nvim
 ```
-**If the above path doesnt work, try any of these paths :**
-- For CMD : %LOCALAPPDATA%\nvim-lua
+**如果上面的路径对你无效，你可以尝试以下路径:**
+- 使用CMD : %LOCALAPPDATA%\nvim-lua
 ```
 C:\Users\%USERNAME%\AppData\Local\nvim
 ```
-- For PowerShell : $ENV:LocalAppData\nvim
+- 使用 PowerShell : $ENV:LocalAppData\nvim
 ```
 C:\Users\$ENV:USERNAME\AppData\Local\nvim
 ```
 
-## 🚚 Uninstall
+## 🚚 卸载
 ### Linux / MacOs(Unix)
 ```
 rm -rf ~/.config/nvim
@@ -55,8 +55,8 @@ rm -Force ~\AppData\Local\nvim-data
 
 ```
 
-## 🚀 Plugins
-### 📌 NvChad default plugins
+## 🚀 插件
+### 📌 NvChad 默认插件
 <hr>
 
 - [nvim-lua/plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
@@ -84,7 +84,7 @@ rm -Force ~\AppData\Local\nvim-data
 - [max397574/better-escape.nvim](https://github.com/max397574/better-escape.nvim)
 - [stevearc/conform.nvim](https://github.com/stevearc/conform.nvim)
 
-### ➕ Customized plugins
+### ➕ 客制化插件
 <hr>
     
 - [rcarriga/nvim-notify](https://github.com/rcarriga/nvim-notify)
