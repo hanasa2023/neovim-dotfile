@@ -1,15 +1,20 @@
 # 📝 Hanasa's personal neovim dotfiles
 [![GitHub](https://img.shields.io/github/license/hanasa2023/neovim-dotfile?style=for-the-badge)](https://github.com/hanasa2023/neovim-dotfile?tab=MIT-1-ov-file)
 #### This is a customized neovim based by [NvChad](https://nvchad.com)
-![Dashboard](https://files.catbox.moe/zkhwng.png)
+![Dashboard](https://files.catbox.moe/i0qh1e.png)
 
 ## 📸 ScreenShot
-![UI](https://files.catbox.moe/j8xao2.png)
+![UI](https://files.catbox.moe/d6t039.png)
+
 - All of the keybindings are in the `lua/mappings.lua` file.And you can find all keybindings in the `CheatSheet`
-![CheatSheet](https://files.catbox.moe/f3v96w.png)
+![CheatSheet](https://files.catbox.moe/5yt6th.png)
+
+## ✨ Features
+- Using a customized lualine theme based by vscode statusline.You can found it on [hanasa2023\vscode-lualine](https://github.com/hanasa2023/vscode-lualine)
+![vscode-lualine](https://files.catbox.moe/wbht81.png)
 
 ## ⚡️ Requirements
-- Neovim 0.9.0+
+- Neovim 0.10.0+
 
 ## 📦 Installation
 ### Linux / MacOs(Unix)
