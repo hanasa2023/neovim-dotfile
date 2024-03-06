@@ -103,3 +103,4 @@ rm -Force ~\AppData\Local\nvim-data
 - [folke/trouble.nvim](https://github.com/folke/trouble.nvim)
 - [windwp/nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag)
 - [xiyaowong/transparent.nvim](https://github.com/xiyaowong/transparent.nvim)
+- [nvim-lualine/lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
