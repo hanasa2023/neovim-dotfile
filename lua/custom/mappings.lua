@@ -54,7 +54,32 @@ M.general = {
       end,
       "Filter Notifications",
     },
+    ["<leader>c"] = {
+      function()
+        require("notify").dismiss()
+      end,
+      "Dismiss Notification",
+    },
 
+    -- DropBar
+    ["<leader>;"] = {
+      function()
+        require("dropbar.api").pick()
+      end,
+      "Open DropBar",
+    },
+    ["[c"] = {
+      function()
+        require("dropbar.api").goto_context_start()
+      end,
+      "Previous Context",
+    },
+    ["]c"] = {
+      function()
+        require("dropbar.api").select_next_context()
+      end,
+      "Next Context",
+    },
 
     -- TODO: Add a keybind for the todo-comments
     -- FIX: Fix some of the keybinds
