@@ -208,7 +208,7 @@ local plugins = {
     -- to make sure all required plugins and colorschemes are loaded before setup
     event = "UIEnter",
     config = function()
-      require "custom.configs.lualine"
+      require "custom.configs.lualine.vscode"
     end,
   },
 
