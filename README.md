@@ -13,6 +13,9 @@
 - Using a customized lualine theme based by vscode statusline.You can found it on [hanasa2023\vscode-lualine](https://github.com/hanasa2023/vscode-lualine)
 ![vscode-lualine](https://files.catbox.moe/wbht81.png)
 
+### Why using lualine?
+Because the plugin 'wilder.nvim' has a conflict with the default statusline provided by NvChad.
+
 ## ⚡️ Requirements
 - Neovim 0.10.0+
 

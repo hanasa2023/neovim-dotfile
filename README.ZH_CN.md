@@ -13,6 +13,9 @@
 - 使用基于 vscode 状态栏的自定义 lualine 主题。你可以在 [hanasa2023\vscode-lualine](https://github.com/hanasa2023/vscode-lualine.git) 找到它。
 ![vscode-lualine](https://files.catbox.moe/wbht81.png)
 
+### 为什么使用 lualine?
+因为插件 'wilder.nvim' 与 NvChad 提供的默认状态栏有冲突。
+
 ## ⚡️ 安装需求
 - Neovim 0.10.0+
 
