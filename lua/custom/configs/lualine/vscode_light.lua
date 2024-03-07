@@ -1,19 +1,21 @@
 local lualine = require "lualine"
 
+
 local colors = {
-  bg = "#34343b",
+  bg = "#cbcfce",
   fg = "#6e6e74",
-  mbg = "#262537",
-  yellow = "#efbe9a",
-  cyan = "#7ec9e3",
+  mbg = "#d7d9e1",
+  yellow = "#ff6300",
+  cyan = "#477bde",
   darkblue = "#081633",
-  green = "#86dd7f",
+  green = "#97ff8f",
   orange = "#ffb684",
   violet = "#c678dd",
   magenta = "#c678dd",
   blue = "#8fb5f7",
   red = "#ffa3be",
   grey = "#3e3d50",
+  lsp = "#70ff64",
   diff_green = "#98be65",
   diff_orange = "#ff8800",
   diff_red = "#ec5f67",
@@ -51,11 +53,13 @@ local config = {
     -- right section. Both are highlighted by c theme .  So we
     -- are just setting default looks o statusline
     -- normal = { a = { bg = colors.mbg }, b = { bg = colors.mbg }, c = { bg = colors.mbg } },
-    -- inactive = { c = { fg = colors.fg, bg = colors.bg } },
+    -- inactive = { c = { bg = light_colors.bg } },
   },
   sections = {
     -- these are to remove the defaults
-    lualine_a = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {
       {
         "mode",
         icon = "",
@@ -87,23 +91,21 @@ local config = {
         end,
         -- color = { bg = colors.fg },
       },
-    },
-    lualine_b = {
       {
         "filetype",
         icon_only = true,
         colored = false,
-        color = { fg = colors.fg, bg = colors.mbg },
+        -- color = { fg = colors.fg, bg = colors.mbg },
+        color = { fg = colors.fg },
         padding = { left = 1, right = 0 },
       },
       {
         "filename",
         cond = conditions.buffer_not_empty,
-        color = { fg = colors.fg, bg = colors.mbg },
+        -- color = { fg = colors.fg, bg = colors.mbg },
+        color = { fg = colors.fg },
         padding = { left = 1, right = 1 },
       },
-    },
-    lualine_c = {
       {
         "branch",
         icon = "",
@@ -135,16 +137,16 @@ local config = {
         function()
           return "|"
         end,
-        color = { fg = colors.diff_red, bg = colors.mbg },
+        -- color = { fg = colors.diff_red, bg = colors.mbg },
+        color = { fg = colors.diff_red },
         cond = conditions.hide_diff,
       },
-    },
-    lualine_y = {
       {
         function()
           return "Ln %l, Col %c"
         end,
-        color = { fg = colors.fg, bg = colors.mbg },
+        -- color = { fg = colors.fg, bg = colors.mbg },
+        color = { fg = colors.fg },
         cond = conditions.hide_line_col,
         -- icon = "|",
       },
@@ -152,13 +154,15 @@ local config = {
         "o:encoding", -- option component same as &encoding in viml
         fmt = string.upper, -- I'm not sure why it's upper case either ;)
         cond = conditions.hide_in_width,
-        color = { fg = colors.yellow, bg = colors.mbg, gui = "bold" },
+        -- color = { fg = colors.yellow, bg = colors.mbg, gui = "bold" },
+        color = { fg = colors.yellow, gui = "bold" },
       },
       {
         function()
           return "{} %Y"
         end,
-        color = { fg = colors.blue, bg = colors.mbg, gui = "bold" },
+        -- color = { fg = colors.blue, bg = colors.mbg, gui = "bold" },
+        color = { fg = colors.blue, gui = "bold" },
       },
       {
         function()
@@ -176,9 +180,11 @@ local config = {
           return msg
         end,
         icon = "󰄭 ",
-        color = { bg = colors.mbg },
+        -- color = { fg = colors.lsp, bg = colors.mbg },
+        color = { fg = colors.lsp },
       },
     },
+    lualine_y = {},
     lualine_z = {
       {
         function()
