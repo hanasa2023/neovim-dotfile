@@ -6,6 +6,7 @@ M.treesitter = {
     "lua",
     "html",
     "css",
+    "kotlin",
     "javascript",
     "typescript",
     "vue",
@@ -35,6 +36,10 @@ M.mason = {
     "vue-language-server",
     "deno",
     "prettier",
+
+    -- kotlin stuff
+    "kotlin-language-server",
+    "ktlint",
 
     -- c/cpp stuff
     "clangd",
