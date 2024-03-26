@@ -21,6 +21,7 @@ local plugins = {
 
   {
     "nvim-treesitter/nvim-treesitter",
+    dependencies = { "stevearc/dressing.nvim" },
     opts = overrides.treesitter,
   },
 
@@ -209,6 +210,15 @@ local plugins = {
     event = "UIEnter",
     config = function()
       require "custom.configs.lualine.vscode_dark"
+    end,
+  },
+
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    lazy = false,
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    config = function()
+      require("treesitter-context").setup()
     end,
   },
 
