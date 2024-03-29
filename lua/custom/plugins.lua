@@ -222,6 +222,11 @@ local plugins = {
     end,
   },
 
+  -- {
+  --   "neoclide/coc.nvim",
+  --   lazy = false,
+  --   branch = "release",
+  -- },
   -- To make a plugin not be loaded
   -- {
   --   "NvChad/nvim-colorizer.lua",
