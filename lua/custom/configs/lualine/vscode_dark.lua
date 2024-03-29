@@ -172,7 +172,7 @@ local config = {
             return msg
           end
           for _, client in ipairs(clients) do
-            if client.name ~= "null-ls" then
+            if client.name ~= "null-ls" and client.name ~= "copilot" then
               return (vim.o.columns > 100 and client.name) or "LSP"
             end
           end
