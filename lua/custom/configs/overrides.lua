@@ -48,6 +48,9 @@ M.mason = {
     -- shell stuff
     "shfmt",
   },
+  ui = {
+    border = "rounded",
+  },
 }
 
 -- git support in nvimtree

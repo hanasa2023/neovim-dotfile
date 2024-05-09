@@ -1,13 +1,13 @@
 # 📝 Hanasa's personal neovim dotfiles
 [![GitHub](https://img.shields.io/github/license/hanasa2023/neovim-dotfile?style=for-the-badge)](https://github.com/hanasa2023/neovim-dotfile?tab=MIT-1-ov-file)
 #### This is a customized neovim based by [NvChad](https://nvchad.com)
-![Dashboard](https://files.catbox.moe/i0qh1e.png)
+![Dashboard](https://files.catbox.moe/bhwb6z.png)
 
 ## 📸 ScreenShot
-![UI](https://files.catbox.moe/d6t039.png)
+![UI](https://files.catbox.moe/8bgfkk.png)
 
 - All of the keybindings are in the `lua/mappings.lua` file.And you can find all keybindings in the `CheatSheet`
-![CheatSheet](https://files.catbox.moe/5yt6th.png)
+![CheatSheet](https://files.catbox.moe/mpnlxn.png)
 
 ## ✨ Features
 - Using a customized lualine theme based by vscode statusline.You can found it on [hanasa2023\vscode-lualine](https://github.com/hanasa2023/vscode-lualine)
@@ -112,3 +112,5 @@ rm -Force ~\AppData\Local\nvim-data
 - [windwp/nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag)
 - [xiyaowong/transparent.nvim](https://github.com/xiyaowong/transparent.nvim)
 - [nvim-lualine/lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
+- [nvim-neo-tree/neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim)
+- [akinsho/bufferline.nvim](https://github.com/akinsho/bufferline.nvim)

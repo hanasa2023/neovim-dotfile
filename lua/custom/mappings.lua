@@ -18,27 +18,49 @@ M.general = {
     ["K"] = { "5k", "Scroll 5 lines up" },
     ["S"] = { ":w<CR>", "Save file" },
     ["Q"] = { ":q<CR>", "Quit" },
+  },
 
-    -- Venv-selector
+  v = {
+    [">"] = { ">gv", "indent" },
+  },
+  i = {
+    ["jj"] = { "<ESC>", "ESC" },
+  },
+}
+
+M.venv_selector = {
+  n = {
     ["<leader>vs"] = { ":VenvSelect<CR>", "Open VenvSelector" },
     ["<leader>vc"] = {
       ":VenvSelectCached<CR>",
       "Retrieve the venv from a cache",
     },
+  },
+}
 
-    -- Copilot
+M.copilot = {
+  n = {
     ["<leader>go"] = { ":Copilot<CR>", "Open Copilot" },
     ["<leader>ge"] = { ":Copilot enable", "Enable Copilot" },
     ["leader>gd"] = { ":Copilot disable", "Disable Copilot" },
+  },
+}
 
-    -- Cellular
+M.cellular = {
+  n = {
     ["<leader>rr"] = { ":CellularAutomaton make_it_rain<CR>", "Make it rain" },
     ["<leader>rg"] = { ":CellularAutomaton game_of_life<CR>", "Game of life" },
+  },
+}
 
-    -- LazyGit
+M.lazy_git = {
+  n = {
     ["<leader>gg"] = { ":LazyGit<CR>", "Open LazyGit" },
+  },
+}
 
-    -- Notify
+M.notify = {
+  n = {
     [",;"] = {
       function()
         require("telescope").extensions.notify.notify {
@@ -60,8 +82,11 @@ M.general = {
       end,
       "Dismiss Notification",
     },
+  },
+}
 
-    -- DropBar
+M.drop_bar = {
+  n = {
     ["<leader>;"] = {
       function()
         require("dropbar.api").pick()
@@ -80,11 +105,11 @@ M.general = {
       end,
       "Next Context",
     },
+  },
+}
 
-    -- TODO: Add a keybind for the todo-comments
-    -- FIX: Fix some of the keybinds
-    --
-    -- TODO-Comment
+M.todo_comment = {
+  n = {
     ["<leader>t"] = { ":TodoLocList<CR>", "List TODOs" },
     ["<leader>tt"] = { ":TodoTelescope<CR>", "Search TODOs" },
     ["]t"] = {
@@ -99,29 +124,74 @@ M.general = {
       end,
       "Previous TODO",
     },
+  },
+}
 
-    -- MarkdownPreview
+M.markdown_preview = {
+  n = {
     ["<leader>md"] = { ":MarkdownPreview<CR>", "Open Markdown Preview" },
+  },
+}
 
-    -- Trouble
+M.trouble = {
+  n = {
     ["<leader>px"] = { ":Trouble<CR>", "Open Trouble" },
     ["<leader>pw"] = { ":Trouble workspace_diagnostics<CR>", "Workspace Diagnostics" },
     ["<leader>pd"] = { ":Trouble document_diagnostics<CR>", "Document Diagnostics" },
     ["<leader>pl"] = { ":Trouble loclist<CR>", "Loclist" },
     ["<leader>pq"] = { ":Trouble quickfix<CR>", "Quickfix" },
-
-    -- HandleURL
-    ["<leader>u"] = { ":HandleURL<CR>", "Open url in browser" },
-  },
-
-  v = {
-    [">"] = { ">gv", "indent" },
-  },
-  i = {
-    ["jj"] = { "<ESC>", "ESC" },
   },
 }
 
--- more keybinds!
+M.handle_URL = {
+  n = {
+    ["<leader>u"] = { ":HandleURL<CR>", "Open url in browser" },
+  },
+}
+
+M.neo_tree = {
+  n = {
+    -- toggle
+    ["<C-n>"] = { "<cmd> Neotree toggle <CR>", "Toggle nvimtree" },
+
+    -- focus
+    ["<leader>e"] = { "<cmd> Neotree focus <CR>", "Focus nvimtree" },
+  },
+}
+
+M.bufferline = {
+  n = {
+    ["<leader>1"] = { "<cmd>lua require('bufferline').go_to(1, true)<cr>", "Go to buffer 1" },
+    ["<leader>2"] = { "<cmd>lua require('bufferline').go_to(2, true)<cr>", "Go to buffer 2" },
+    ["<leader>3"] = { "<cmd>lua require('bufferline').go_to(3, true)<cr>", "Go to buffer 3" },
+    ["<leader>4"] = { "<cmd>lua require('bufferline').go_to(4, true)<cr>", "Go to buffer 4" },
+    ["<leader>5"] = { "<cmd>lua require('bufferline').go_to(5, true)<cr>", "Go to buffer 5" },
+    ["<leader>6"] = { "<cmd>lua require('bufferline').go_to(6, true)<cr>", "Go to buffer 6" },
+    ["<leader>7"] = { "<cmd>lua require('bufferline').go_to(7, true)<cr>", "Go to buffer 7" },
+    ["<leader>8"] = { "<cmd>lua require('bufferline').go_to(8, true)<cr>", "Go to buffer 8" },
+    ["<leader>9"] = { "<cmd>lua require('bufferline').go_to(9, true)<cr>", "Go to buffer 9" },
+    ["<leader>0"] = { "<cmd>lua require('bufferline').go_to(-1, true)<cr>", "Go to last buffer" },
+    -- cycle through buffers
+    ["<tab>"] = {
+      "<cmd>BufferLineCycleNext<CR>",
+      "Goto next buffer",
+    },
+
+    ["<S-tab>"] = {
+      "<cmd>BufferLineCyclePrev<CR>",
+      "Goto prev buffer",
+    },
+
+    -- close buffer + hide terminal buffer
+    ["<leader>x"] = {
+      function()
+        local bufferToDelete = vim.api.nvim_get_current_buf()
+        require("bufferline").cycle(-1)
+        vim.cmd("bdelete! " .. bufferToDelete)
+      end,
+      "Close buffer",
+    },
+  },
+}
 
 return M

@@ -28,6 +28,9 @@ require("dropbar").setup {
     -- clickable component in the direction of cursor movement on CursorMoved
     quick_navigation = true,
     ---@type table<string, string|function|table<string, string|function>>
+    win_configs = {
+      border = "rounded",
+    },
     keymaps = {
       ["<LeftMouse>"] = function()
         local menu = api.get_current_dropbar_menu()

@@ -25,9 +25,24 @@ local plugins = {
     opts = overrides.treesitter,
   },
 
+  -- {
+  --   "nvim-tree/nvim-tree.lua",
+  --   opts = overrides.nvimtree,
+  -- },
+
   {
-    "nvim-tree/nvim-tree.lua",
-    opts = overrides.nvimtree,
+    "nvim-neo-tree/neo-tree.nvim",
+    lazy = false,
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+      "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+    },
+    config = function()
+      require "custom.configs.neotree"
+    end,
   },
 
   -- Install a plugin
@@ -201,6 +216,9 @@ local plugins = {
   {
     "xiyaowong/transparent.nvim",
     lazy = false,
+    config = function()
+      require "custom.configs.transparent"
+    end,
   },
 
   {
@@ -209,7 +227,7 @@ local plugins = {
     -- to make sure all required plugins and colorschemes are loaded before setup
     event = "UIEnter",
     config = function()
-      require "custom.configs.lualine.vscode_dark"
+      require "custom.configs.lualine.vscode_transparent_dark_bg"
     end,
   },
 
@@ -219,6 +237,16 @@ local plugins = {
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
       require("treesitter-context").setup()
+    end,
+  },
+
+  {
+    "akinsho/bufferline.nvim",
+    lazy = false,
+    version = "*",
+    dependencies = "nvim-tree/nvim-web-devicons",
+    config = function()
+      require "custom.configs.bufferline"
     end,
   },
 

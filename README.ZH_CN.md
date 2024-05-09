@@ -1,13 +1,13 @@
 # 📝 Hanasa 的个人neovim配置文件
 [![GitHub](https://img.shields.io/github/license/hanasa2023/neovim-dotfile?style=for-the-badge)](https://github.com/hanasa2023/neovim-dotfile?tab=MIT-1-ov-file)
 #### 这是一个基于 [NvChad](https://nvchad.com) 的客制化neovim
-![Dashboard](https://files.catbox.moe/i0qh1e.png)
+![Dashboard](https://files.catbox.moe/bhwb6z.png)
 
 ## 📸 屏幕快照
-![UI](https://files.catbox.moe/d6t039.png)
+![UI](https://files.catbox.moe/8bgfkk.png)
 
 - 所有键位绑定都可以在 `lua/mappings.lua` 中找到。并且你可以在 `CheatSheet` 中找到所有的键位绑定。
-![CheatSheet](https://files.catbox.moe/5yt6th.png)
+![CheatSheet](https://files.catbox.moe/mpnlxn.png)
 
 ## ✨ 特性
 - 使用基于 vscode 状态栏的自定义 lualine 主题。你可以在 [hanasa2023\vscode-lualine](https://github.com/hanasa2023/vscode-lualine.git) 找到它。
@@ -112,3 +112,5 @@ rm -Force ~\AppData\Local\nvim-data
 - [windwp/nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag)
 - [xiyaowong/transparent.nvim](https://github.com/xiyaowong/transparent.nvim)
 - [nvim-lualine/lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
+- [nvim-neo-tree/neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim)
+- [akinsho/bufferline.nvim](https://github.com/akinsho/bufferline.nvim)
