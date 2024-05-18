@@ -1,17 +1,17 @@
-# 📝 Hanasa's personal neovim dotfiles
+# 📝 Hanasaki's personal neovim dotfiles
 [![GitHub](https://img.shields.io/github/license/hanasa2023/neovim-dotfile?style=for-the-badge)](https://github.com/hanasa2023/neovim-dotfile?tab=MIT-1-ov-file)
 #### This is a customized neovim based by [NvChad](https://nvchad.com)
-![Dashboard](https://files.catbox.moe/bhwb6z.png)
+![Dashboard](https://files.catbox.moe/cdz43b.png)
 
 ## 📸 ScreenShot
-![UI](https://files.catbox.moe/8bgfkk.png)
+![UI](https://files.catbox.moe/mtsfbx.png)
 
 - All of the keybindings are in the `lua/mappings.lua` file.And you can find all keybindings in the `CheatSheet`
-![CheatSheet](https://files.catbox.moe/mpnlxn.png)
+![CheatSheet](https://files.catbox.moe/edhgar.png)
 
 ## ✨ Features
 - Using a customized lualine theme based by vscode statusline.You can found it on [hanasa2023\vscode-lualine](https://github.com/hanasa2023/vscode-lualine)
-![vscode-lualine](https://files.catbox.moe/wbht81.png)
+![vscode-lualine](https://files.catbox.moe/6uy5kl.png)
 
 ### Why using lualine?
 Because the plugin 'wilder.nvim' has a conflict with the default statusline provided by NvChad.

@@ -1,17 +1,17 @@
-# 📝 Hanasa 的个人neovim配置文件
+# 📝 Hanasaki 的个人neovim配置文件
 [![GitHub](https://img.shields.io/github/license/hanasa2023/neovim-dotfile?style=for-the-badge)](https://github.com/hanasa2023/neovim-dotfile?tab=MIT-1-ov-file)
 #### 这是一个基于 [NvChad](https://nvchad.com) 的客制化neovim
-![Dashboard](https://files.catbox.moe/bhwb6z.png)
+![Dashboard](https://files.catbox.moe/cdz43b.png)
 
 ## 📸 屏幕快照
-![UI](https://files.catbox.moe/8bgfkk.png)
+![UI](https://files.catbox.moe/mtsfbx.png)
 
 - 所有键位绑定都可以在 `lua/mappings.lua` 中找到。并且你可以在 `CheatSheet` 中找到所有的键位绑定。
-![CheatSheet](https://files.catbox.moe/mpnlxn.png)
+![CheatSheet](https://files.catbox.moe/edhgar.png)
 
 ## ✨ 特性
 - 使用基于 vscode 状态栏的自定义 lualine 主题。你可以在 [hanasa2023\vscode-lualine](https://github.com/hanasa2023/vscode-lualine.git) 找到它。
-![vscode-lualine](https://files.catbox.moe/wbht81.png)
+![vscode-lualine](https://files.catbox.moe/6uy5kl.png)
 
 ### 为什么使用 lualine?
 因为插件 'wilder.nvim' 与 NvChad 提供的默认状态栏有冲突。
