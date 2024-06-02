@@ -1,0 +1,71 @@
+{
+	"coc.preferences.extensionUpdateCheck": "daily",
+	"coc.preferences.formatOnSave": true,
+	"suggest.noselect": true,
+	"suggest.completionItemKindLabels": {
+		"class": "",
+		"color": "",
+		"constant": "",
+		"default": "",
+		"enum": "",
+		"enumMember": "",
+		"event": "",
+		"field": "",
+		"file": "",
+		"folder": "",
+		"function": "ƒ",
+		"interface": "",
+		"keyword": "",
+		"method": "",
+		"module": "",
+		"operator": "",
+		"property": "",
+		"reference": "",
+		"snippet": "",
+		"struct": "פּ",
+		"text": "",
+		"typeParameter": "",
+		"unit": "",
+		"value": "",
+		"variable": ""
+	},
+	"suggest.floatConfig": {
+		"border": true,
+		"rounded": true
+	},
+	"diagnostic.signPriority": 10,
+	"diagnostic.displayByAle": false,
+	"diagnostic.refreshOnInsertMode": false,
+	"diagnostic.checkCurrentLine": true,
+	"diagnostic.errorSign": " ",
+	"diagnostic.warningSign": " ",
+	"diagnostic.infoSign": " ",
+	"diagnostic.hintSign": " ",
+	"diagnostic.floatConfig": {
+		"border": true,
+		"rounded": true
+	},
+	"diagnostic.virtualText": true,
+	"diagnostic.virtualTextFormat": "%message ",
+	"diagnostic.virtualTextPrefix": " ",
+	"diagnostic.virtualTextCurrentLineOnly": false,
+	"codeLens.enable": true,
+	"hover.floatConfig": {
+		"border": true,
+		"rounded": true
+	},
+	"snippets.shortcut": "Ⓢ ",
+	"snippets.ultisnips.pythonPrompt": false,
+	"snippets.ultisnips.directories": [
+		"UltiSnips",
+		"$HOME/.config/nvim/lua/custom/snippets/UltiSnips"
+	],
+	"prettier.useTabs": true,
+	"prettier.tabWidth": 4,
+	"languageserver": {
+		"kotlin": {
+			"command": "$HOME/.config/nvim/lua/custom/lsp/kotlin/server/bin/kotlin-language-server",
+			"filetypes": ["kotlin"]
+		}
+	}
+}
