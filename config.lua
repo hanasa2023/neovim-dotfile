@@ -93,6 +93,10 @@ lvim.lsp.buffer_mappings.normal_mode["K"] = nil
 lvim.lsp.buffer_mappings.normal_mode["H"] = { vim.lsp.buf.hover, "Show documentation" }
 
 -- which-key mappings
+lvim.builtin.which_key.mappings["h"] = {
+	":ToggleTerm size=16 direction=horizontal<cr>",
+	"Open horizontal term",
+}
 lvim.builtin.which_key.mappings["f"] = {
 	name = "file options",
 	f = {
@@ -357,7 +361,7 @@ local r = string.match(result, "'(.*)'")
 
 lvim.builtin.alpha.dashboard.section.footer.opts.hl = "Ykn"
 lvim.builtin.alpha.dashboard.section.footer.val = require("lvim.interface.text").align_center({ width = "0" }, {
-  r
+	r,
 	-- date .. "  星座：" .. xinZuo .. "  宜：" .. yi .. "  忌：" .. ji,
 }, 0.5)
 
