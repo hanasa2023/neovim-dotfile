@@ -22,6 +22,12 @@ o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease
 o.foldlevelstart = 99
 o.foldenable = true
 
+-- lsp server
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "tsserver" })
+lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
+	return server ~= "vtsls"
+end, lvim.lsp.automatic_configuration.skipped_servers)
+
 --------------------------------- Mappings ---------------------------------
 
 local n_map = lvim.keys.normal_mode
@@ -38,9 +44,6 @@ n_map["<leader>t"] = ":ToggleTerm<cr>"
 n_map["<leader><cr>"] = ":nohl<cr>"
 n_map[";"] = ":"
 i_map["jj"] = "<esc>"
-
--- lsp server
-vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "tsserver" })
 
 -- refactoring
 
