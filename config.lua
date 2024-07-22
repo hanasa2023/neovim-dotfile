@@ -23,10 +23,12 @@ o.foldlevelstart = 99
 o.foldenable = true
 
 -- lsp server
-vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "tsserver" })
+-- lvim.lsp.installer.setup.automatic_installation = false
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "tsserver", "volar" })
 lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
 	return server ~= "vtsls"
 end, lvim.lsp.automatic_configuration.skipped_servers)
+vim.lsp.inlay_hint.enable(true)
 
 --------------------------------- Mappings ---------------------------------
 
@@ -96,6 +98,10 @@ lvim.lsp.buffer_mappings.normal_mode["K"] = nil
 lvim.lsp.buffer_mappings.normal_mode["H"] = { vim.lsp.buf.hover, "Show documentation" }
 
 -- which-key mappings
+lvim.builtin.which_key.mappings["m"] = {
+	":MarkdownPreview<cr>",
+	"Open MarkdownPreview",
+}
 lvim.builtin.which_key.mappings["h"] = {
 	":ToggleTerm size=16 direction=horizontal<cr>",
 	"Open horizontal term",
@@ -706,6 +712,43 @@ lvim.builtin.bufferline.options = {
 
 -- custom plugins
 lvim.plugins = {
+	{
+		"iamcco/markdown-preview.nvim",
+		lazy = false,
+		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+		ft = { "markdown" },
+		build = function()
+			vim.fn["mkdp#util#install"]()
+		end,
+	},
+
+	{
+		"windwp/nvim-ts-autotag",
+		config = function()
+			require("nvim-ts-autotag").setup({
+				-- your config
+				enable = true,
+				filetypes = {
+					"html",
+					"javascript",
+					"typescript",
+					"vue",
+					"tsx",
+					"jsx",
+					"xml",
+					"markdown",
+				},
+			})
+		end,
+	},
+	{
+		"ray-x/lsp_signature.nvim",
+		event = "VeryLazy",
+		opts = { hint_prefix = "💮 " },
+		config = function(_, opts)
+			require("lsp_signature").setup(opts)
+		end,
+	},
 	-- {
 	--   "HiPhish/rainbow-delimiters.nvim",
 	--   dependencies = "nvim-treesitter/nvim-treesitter",
@@ -805,11 +848,20 @@ lvim.plugins = {
 			"antoinemadec/FixCursorHold.nvim",
 			"nvim-treesitter/nvim-treesitter",
 			"marilari88/neotest-vitest",
+			"nvim-neotest/neotest-jest",
 		},
 		config = function()
 			require("neotest").setup({
 				adapters = {
 					require("neotest-vitest"),
+					require("neotest-jest")({
+						jestCommand = "npm test --",
+						jestConfigFile = "custom.jest.config.ts",
+						env = { CI = true },
+						cwd = function(path)
+							return vim.fn.getcwd()
+						end,
+					}),
 				},
 			})
 		end,
@@ -1020,10 +1072,57 @@ lvim.plugins = {
 			"nvim-lua/plenary.nvim",
 			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
 			"MunifTanjim/nui.nvim",
-			"3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+			-- 	{
+			-- 		"3rd/image.nvim",
+			-- 		dependencies = {
+
+			-- 			"vhyrro/luarocks.nvim",
+			-- 		},
+			-- 		config = function()
+			-- 			require("image").setup({
+			-- 				integrations = {
+			-- 					markdown = {
+			-- 						enabled = true,
+			-- 						clear_in_insert_mode = false,
+			-- 						download_remote_images = true,
+			-- 						only_render_image_at_cursor = false,
+			-- 						filetypes = { "markdown", "vimwiki" }, -- markdown extensions (ie. quarto) can go here
+			-- 					},
+			-- 					neorg = {
+			-- 						enabled = true,
+			-- 						clear_in_insert_mode = false,
+			-- 						download_remote_images = true,
+			-- 						only_render_image_at_cursor = false,
+			-- 						filetypes = { "norg" },
+			-- 					},
+			-- 					html = {
+			-- 						enabled = false,
+			-- 					},
+			-- 					css = {
+			-- 						enabled = false,
+			-- 					},
+			-- 				},
+			-- 				max_width = nil,
+			-- 				max_height = nil,
+			-- 				max_width_window_percentage = nil,
+			-- 				max_height_window_percentage = 50,
+			-- 				window_overlap_clear_enabled = false, -- toggles images when windows are overlapped
+			-- 				window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
+			-- 				editor_only_render_when_focused = false, -- auto show/hide images when the editor gains/looses focus
+			-- 				tmux_show_only_in_active_window = false, -- auto show/hide images in the correct Tmux window (needs visual-activity off)
+			-- 				hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.avif" }, -- render image files as images when opened
+			-- 			})
+			-- 		end,
+			-- 	},
 		},
 		config = function()
 			require("neo-tree").setup({
+				window = {
+					mappings = {
+
+						["P"] = { "toggle_preview", config = { use_float = false, use_image_nvim = true } },
+					},
+				},
 				default_component_configs = {
 					indent = {
 						indent_size = 2,
@@ -1090,10 +1189,12 @@ lvim.plugins = {
 				formatters_by_ft = {
 					lua = { "stylua" },
 					javascript = { "prettier" },
+					typescript = { "prettier" },
 					css = { "prettier" },
 					html = { "prettier" },
 					vue = { "prettier" },
 					python = { "ast-grep" },
+					markdown = { "prettier" },
 
 					sh = { "shfmt" },
 				},
