@@ -10,6 +10,10 @@ local o = vim.o
 --------------------------------- Color Scheme ---------------------------------
 
 lvim.colorscheme = "lunar"
+-- 设置行号颜色
+vim.api.nvim_set_hl(0, "LineNr", { fg = "#FF0000" }) -- 将行号颜色设置为红色
+vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#00FF00", bold = true }) -- 将当前行号颜色设置为绿色并加粗
+vim.api.nvim_set_hl_ns(0)
 
 --------------------------------- Options ---------------------------------
 
@@ -24,7 +28,7 @@ o.foldenable = true
 
 -- lsp server
 -- lvim.lsp.installer.setup.automatic_installation = false
-vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "tsserver", "volar" })
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "tsserver", "volar", "pyright" })
 lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
 	return server ~= "vtsls"
 end, lvim.lsp.automatic_configuration.skipped_servers)
@@ -98,6 +102,14 @@ lvim.lsp.buffer_mappings.normal_mode["K"] = nil
 lvim.lsp.buffer_mappings.normal_mode["H"] = { vim.lsp.buf.hover, "Show documentation" }
 
 -- which-key mappings
+lvim.builtin.which_key.mappings["i"] = {
+	function()
+		local bufnr = vim.api.nvim_get_current_buf()
+		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr }), { bufnr })
+	end,
+	"Toggle inlay hint",
+}
+
 lvim.builtin.which_key.mappings["m"] = {
 	":MarkdownPreview<cr>",
 	"Open MarkdownPreview",
@@ -273,6 +285,58 @@ lvim.builtin.which_key.mappings["D"] = {
 			require("dap").set_breakpoint(vim.fn.input("[Condition] > "))
 		end,
 		"Set conditional breakpoint",
+	},
+}
+
+-- venv-selector
+lvim.builtin.which_key.mappings["s"] = {
+	name = "VenvSelector",
+	v = {
+		":VenvSelect<cr>",
+		"Select a venv",
+	},
+	l = {
+		":VenvSelectLog<cr>",
+		"Show venv select log",
+	},
+}
+
+-- Copilot
+lvim.builtin.which_key.mappings["C"] = {
+	name = "Copilot",
+	o = {
+		function()
+			require("CopilotChat").open({
+				window = {
+					layout = "float",
+					title = "Copilot",
+				},
+			})
+		end,
+		"Open CopilotChat",
+	},
+	c = {
+		function()
+			require("CopilotChat").close()
+		end,
+		"Close copilot chat",
+	},
+	t = {
+		function()
+			require("CopilotChat").toggle({
+				window = {
+					layout = "float",
+					title = "Copilot",
+				},
+			})
+		end,
+		"Toggle copilot chat",
+	},
+	r = {
+		function()
+			require("CopilotChat").reset()
+		end,
+		"Reset chat window",
 	},
 }
 
@@ -713,6 +777,21 @@ lvim.builtin.bufferline.options = {
 -- custom plugins
 lvim.plugins = {
 	{
+		"CopilotC-Nvim/CopilotChat.nvim",
+		branch = "canary",
+		lazy = true,
+		dependencies = {
+			{ "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
+			{ "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
+		},
+		opts = {
+			debug = true, -- Enable debugging
+			-- See Configuration section for rest
+		},
+		-- See Commands section for default commands if you want to lazy load on them
+	},
+
+	{
 		"linux-cultist/venv-selector.nvim",
 		dependencies = {
 			"neovim/nvim-lspconfig",
@@ -726,19 +805,14 @@ lvim.plugins = {
 			require("venv-selector").setup({
 				-- Your options go here
 				-- name = "venv",
-				-- auto_refresh = false
+				debug = true,
 			})
 		end,
-		keys = {
-			-- Keymap to open VenvSelector to pick a venv.
-			{ "<leader>vs", "<cmd>VenvSelect<cr>" },
-			-- Keymap to retrieve the venv from a cache (the one previously used for the same project directory).
-			{ "<leader>vc", "<cmd>VenvSelectCached<cr>" },
-		},
 	},
 
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
+		lazy = false,
 		opts = {},
 		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
 	},
@@ -750,7 +824,6 @@ lvim.plugins = {
 
 	{
 		"iamcco/markdown-preview.nvim",
-		lazy = false,
 		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
 		ft = { "markdown" },
 		build = function()
@@ -760,6 +833,16 @@ lvim.plugins = {
 
 	{
 		"windwp/nvim-ts-autotag",
+		ft = {
+			"html",
+			"javascript",
+			"typescript",
+			"vue",
+			"tsx",
+			"jsx",
+			"xml",
+			"markdown",
+		},
 		config = function()
 			require("nvim-ts-autotag").setup({
 				-- your config
@@ -796,60 +879,61 @@ lvim.plugins = {
 	--   event = "BufEnter",
 	-- },
 
-	{
-		"zbirenbaum/copilot.lua",
-		cmd = "Copilot",
-		event = "InsertEnter",
-		config = function()
-			require("copilot").setup({
-				panel = {
-					enabled = true,
-					auto_refresh = false,
-					keymap = {
-						jump_prev = "[[",
-						jump_next = "]]",
-						accept = "<CR>",
-						refresh = "gr",
-						open = "<M-CR>",
-					},
-					layout = {
-						position = "right", -- | top | left | right
-						ratio = 0.2,
-					},
-				},
-				suggestion = {
-					enabled = true,
-					auto_trigger = false,
-					hide_during_completion = true,
-					debounce = 75,
-					keymap = {
-						accept = "<C-c>",
-						accept_word = false,
-						accept_line = false,
-						next = "<]n>",
-						prev = "[n>",
-						dismiss = "<C-]>",
-					},
-				},
-				filetypes = {
-					yaml = false,
-					markdown = false,
-					help = false,
-					gitcommit = false,
-					gitrebase = false,
-					hgcommit = false,
-					svn = false,
-					cvs = false,
-					["."] = false,
-				},
-				copilot_node_command = "node", -- Node.js version must be > 18.x
-				server_opts_overrides = {},
-			})
-		end,
-	},
+	-- {
+	-- 	"zbirenbaum/copilot.lua",
+	-- 	cmd = "Copilot",
+	-- 	event = "InsertEnter",
+	-- 	config = function()
+	-- 		require("copilot").setup({
+	-- 			panel = {
+	-- 				enabled = true,
+	-- 				auto_refresh = false,
+	-- 				keymap = {
+	-- 					jump_prev = "[[",
+	-- 					jump_next = "]]",
+	-- 					accept = "<CR>",
+	-- 					refresh = "gr",
+	-- 					open = "<M-CR>",
+	-- 				},
+	-- 				layout = {
+	-- 					position = "right", -- | top | left | right
+	-- 					ratio = 0.2,
+	-- 				},
+	-- 			},
+	-- 			suggestion = {
+	-- 				enabled = true,
+	-- 				auto_trigger = false,
+	-- 				hide_during_completion = true,
+	-- 				debounce = 75,
+	-- 				keymap = {
+	-- 					accept = "<C-c>",
+	-- 					accept_word = false,
+	-- 					accept_line = false,
+	-- 					next = "<]n>",
+	-- 					prev = "[n>",
+	-- 					dismiss = "<C-]>",
+	-- 				},
+	-- 			},
+	-- 			filetypes = {
+	-- 				yaml = false,
+	-- 				markdown = false,
+	-- 				help = false,
+	-- 				gitcommit = false,
+	-- 				gitrebase = false,
+	-- 				hgcommit = false,
+	-- 				svn = false,
+	-- 				cvs = false,
+	-- 				["."] = false,
+	-- 			},
+	-- 			copilot_node_command = "node", -- Node.js version must be > 18.x
+	-- 			server_opts_overrides = {},
+	-- 		})
+	-- 	end,
+	-- },
 
 	{
 		"mfussenegger/nvim-dap",
+		event = "VeryLazy",
 		config = function()
 			require("dap").adapters["pwa-node"] = {
 				type = "server",
@@ -878,6 +962,7 @@ lvim.plugins = {
 
 	{
 		"nvim-neotest/neotest",
+		ft = { "python", "typescript", "vue" },
 		dependencies = {
 			"nvim-neotest/nvim-nio",
 			"nvim-lua/plenary.nvim",
@@ -885,6 +970,7 @@ lvim.plugins = {
 			"nvim-treesitter/nvim-treesitter",
 			"marilari88/neotest-vitest",
 			"nvim-neotest/neotest-jest",
+			"nvim-neotest/neotest-python",
 		},
 		config = function()
 			require("neotest").setup({
@@ -898,6 +984,7 @@ lvim.plugins = {
 							return vim.fn.getcwd()
 						end,
 					}),
+					require("neotest-python"),
 				},
 			})
 		end,
@@ -905,7 +992,7 @@ lvim.plugins = {
 
 	{
 		"ThePrimeagen/refactoring.nvim",
-		lazy = false,
+		event = "BufEnter",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
@@ -980,7 +1067,7 @@ lvim.plugins = {
 
 	{
 		"kevinhwang91/nvim-ufo",
-		lazy = false,
+		event = "BufEnter",
 		dependencies = {
 			"kevinhwang91/promise-async",
 			{
@@ -1108,56 +1195,22 @@ lvim.plugins = {
 			"nvim-lua/plenary.nvim",
 			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
 			"MunifTanjim/nui.nvim",
-			-- 	{
-			-- 		"3rd/image.nvim",
-			-- 		dependencies = {
-
-			-- 			"vhyrro/luarocks.nvim",
-			-- 		},
-			-- 		config = function()
-			-- 			require("image").setup({
-			-- 				integrations = {
-			-- 					markdown = {
-			-- 						enabled = true,
-			-- 						clear_in_insert_mode = false,
-			-- 						download_remote_images = true,
-			-- 						only_render_image_at_cursor = false,
-			-- 						filetypes = { "markdown", "vimwiki" }, -- markdown extensions (ie. quarto) can go here
-			-- 					},
-			-- 					neorg = {
-			-- 						enabled = true,
-			-- 						clear_in_insert_mode = false,
-			-- 						download_remote_images = true,
-			-- 						only_render_image_at_cursor = false,
-			-- 						filetypes = { "norg" },
-			-- 					},
-			-- 					html = {
-			-- 						enabled = false,
-			-- 					},
-			-- 					css = {
-			-- 						enabled = false,
-			-- 					},
-			-- 				},
-			-- 				max_width = nil,
-			-- 				max_height = nil,
-			-- 				max_width_window_percentage = nil,
-			-- 				max_height_window_percentage = 50,
-			-- 				window_overlap_clear_enabled = false, -- toggles images when windows are overlapped
-			-- 				window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
-			-- 				editor_only_render_when_focused = false, -- auto show/hide images when the editor gains/looses focus
-			-- 				tmux_show_only_in_active_window = false, -- auto show/hide images in the correct Tmux window (needs visual-activity off)
-			-- 				hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.avif" }, -- render image files as images when opened
-			-- 			})
-			-- 		end,
-			-- 	},
+			"adelarsq/image_preview.nvim",
 		},
 		config = function()
 			require("neo-tree").setup({
 				window = {
 					mappings = {
-
-						["P"] = { "toggle_preview", config = { use_float = false, use_image_nvim = true } },
+						["P"] = { "image_wezterm" },
 					},
+				},
+				commands = {
+					image_wezterm = function(state)
+						local node = state.tree:get_node()
+						if node.type == "file" then
+							require("image_preview").PreviewImage(node.path)
+						end
+					end,
 				},
 				default_component_configs = {
 					indent = {
@@ -1218,6 +1271,7 @@ lvim.plugins = {
 
 	{
 		"stevearc/conform.nvim",
+		event = "BufEnter",
 		config = function()
 			local options = {
 				lsp_fallback = true,
@@ -1229,7 +1283,7 @@ lvim.plugins = {
 					css = { "prettier" },
 					html = { "prettier" },
 					vue = { "prettier" },
-					python = { "ruff" },
+					python = { "ruff_format", "ruff_organize_imports" },
 					markdown = { "prettier" },
 
 					sh = { "shfmt" },
@@ -1447,7 +1501,7 @@ lvim.plugins = {
 
 	{
 		"shellRaining/hlchunk.nvim",
-		lazy = false,
+		event = "VimEnter",
 		init = function()
 			vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, { pattern = "*", command = "EnableHL" })
 			require("hlchunk").setup({
